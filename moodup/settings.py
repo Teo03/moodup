@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@^30#(&56k8u^j^pvx&t9k&bq^-sbavjk=9m@qlx_eqx!l1^&v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['moodup.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
