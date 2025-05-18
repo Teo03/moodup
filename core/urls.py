@@ -9,6 +9,4 @@ urlpatterns = [
     path('', views.api_root, name='api-root'),
     path('', include(router.urls)),
     path('statistics/', views.mood_statistics, name='mood-statistics'),
-    path('trends/weekly/', views.weekly_mood_trend, name='weekly-mood-trend'),
-    path('recommendations/', views.mood_recommendations, name='mood-recommendations'),
 ] 

@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Mood
 from .serializers import MoodSerializer
-from .utils import calculate_mood_stats, calculate_weekly_trend, get_mood_recommendations
+from .utils import calculate_mood_stats
 
 # Create your views here.
 
@@ -21,18 +21,12 @@ def api_root(request):
 
 @api_view(['GET'])
 def mood_statistics(request):
-    """Get statistics about user's mood entries"""
-    stats = calculate_mood_stats()
+    """Get statistics and recommendations about user's mood based on weather"""
+    # Extract latitude, longitude and location name from query parameters if provided
+    lat = request.query_params.get('lat')
+    lon = request.query_params.get('lon')
+    location_name = request.query_params.get('location_name')
+    
+    # Calculate statistics using provided coordinates if available
+    stats = calculate_mood_stats(lat=lat, lon=lon, location_name=location_name)
     return Response(stats)
-
-@api_view(['GET'])
-def weekly_mood_trend(request):
-    """Get weekly mood trend data"""
-    trend_data = calculate_weekly_trend()
-    return Response(trend_data)
-
-@api_view(['GET'])
-def mood_recommendations(request):
-    """Get personalized recommendations based on mood data"""
-    recommendations = get_mood_recommendations()
-    return Response(recommendations)
